@@ -6,26 +6,34 @@ const instance = axios.create({
 
 
 export const gitAPI = {
-    getUser(user: string) {
-        return instance.get<UserResponseType>(`/users/${user}`);
+    getUser(userName: string) {
+        return instance.get<UserResponseType>(`/users/${userName}`);
     },
-    getUserRepos(user: string) {
-        return instance.get(`/users/${user}/repos`)
+    getUserRepos(userName: string) {
+        return instance.get<UserReposResponseType[]>(`/users/${userName}/repos`)
     }
 }
 
 export type UserResponseType = {
     avatar_url: string
-    company: null
-    email: null
+    company: string
+    email: string
     followers: number
     following: number
     html_url: string
     id: number
-    location: null
+    location: string
     login: string
-    name: null
+    name: string
     node_id: string
     public_gists: number
     public_repos: number
 }
+
+export type UserReposResponseType = {
+    description: string
+    html_url:string
+    id: number
+    name: string
+}
+

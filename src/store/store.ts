@@ -1,9 +1,11 @@
+import { userReducer } from './user-reducer';
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import thunkMiddleware from 'redux-thunk'
+import { useDispatch } from 'react-redux';
 
 
 const rootReducer = combineReducers({
-
+  user: userReducer
 })
 
 export const store = configureStore({
@@ -11,7 +13,11 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().prepend(thunkMiddleware)
 })
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootStateType = ReturnType<typeof store.getState>
 
-export type AppDispatch = typeof store.dispatch
+export type AppDispatchType = typeof store.dispatch
 
+export const useAppDispatch = () => useDispatch<AppDispatchType>()
+
+// @ts-ignore
+window.store = store;
