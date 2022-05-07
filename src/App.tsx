@@ -8,7 +8,7 @@ import { getUserTC } from './store/user-reducer';
 import { RootStateType, useAppDispatch } from './store/store';
 import { useSelector } from 'react-redux';
 import { RequestStatusType } from './store/app-reducer';
-import { Loader } from './components/Loader';
+import { Loader } from './components/Loader/Loader';
 
 function App() {
   const [value, setValue] = useState('')

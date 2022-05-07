@@ -1,5 +1,5 @@
 export const EmptyStatePage = ()=> {
     return (
-        <h1>EmptyStatePage</h1>
+        <h1>User not found</h1>
     )
 }

@@ -1,24 +1,19 @@
 import { useSelector } from "react-redux"
 import { UserReposResponseType, UserResponseType } from "../../api/gitAPI"
-import { Repository } from "../../components/Repository"
-import { User } from "../../components/User"
+
+import { User } from "../../components/User/User"
+import { RequestStatusType } from "../../store/app-reducer"
 import { RootStateType } from "../../store/store"
+import { EmptyStatePage } from "../empty/EmptyStatePage"
 
 export const MainPage = ()=> {
     const user = useSelector<RootStateType, UserResponseType>(state => state.user.user)
-    const repos = useSelector<RootStateType, UserReposResponseType[]>(state => state.user.repos)
     const error = useSelector<RootStateType,string>(state=> state.app.error)
+    const status = useSelector<RootStateType, RequestStatusType>(state=> state.app.initializedStatus)
 
     return (
         <div>
-            {error ? error : <User user={user} />}
-            {repos.length !== 0 ? <div>
-                {repos.map(rep => <Repository key={rep.id} repository={rep} />)}
-            </div> : 
-            <div>
-                Repository list is empty
-            </div>
-            }
+            {status === 'failed' ? <EmptyStatePage /> : <User user={user} />}
         </div>
     )
 }

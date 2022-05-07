@@ -29,7 +29,8 @@ export const getReposTC = createAsyncThunk('user/getRepos', async (userName: str
         return res.data
     }
     catch (err:any){
-        return rejectWithValue({errors: [err.message], fieldsErrors: undefined})
+        dispatch(setInitializedStatusAC({status: 'failed'}))
+        return []
     }
 })
 

@@ -1,4 +1,5 @@
-import { UserReposResponseType } from "../api/gitAPI"
+import { UserReposResponseType } from "../../../api/gitAPI"
+
 
 type PropsType = {
     repository: UserReposResponseType
@@ -7,6 +8,7 @@ type PropsType = {
 
 export const Repository = ({repository}: PropsType) => {
     return <div>
-        {repository.name}
+        <h5>{repository.name}</h5>
+        <p>{repository.description}</p>
     </div>
 }
