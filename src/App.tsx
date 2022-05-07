@@ -5,12 +5,17 @@ import { EmptyStatePage } from './pages/empty/EmptyStatePage';
 import { MainPage } from './pages/main/MainPage';
 import { StartPage } from './pages/start/StartPage';
 import { getUserTC } from './store/user-reducer';
-import { useAppDispatch } from './store/store';
+import { RootStateType, useAppDispatch } from './store/store';
+import { useSelector } from 'react-redux';
+import { RequestStatusType } from './store/app-reducer';
+import { Loader } from './components/Loader';
 
 function App() {
   const [value, setValue] = useState('')
 
   const dispatch = useAppDispatch()
+  const start = useSelector<RootStateType, boolean>(state => state.app.start)
+  const initializedStatus = useSelector<RootStateType, RequestStatusType>(state => state.app.initializedStatus)
 
   const onEnterClick = (e:KeyboardEvent<HTMLInputElement>) =>{
     if (e.key === 'Enter') {
@@ -23,12 +28,10 @@ function App() {
     <div className="App">
       logo
       <input type="text"  onChange={(e)=> setValue(e.currentTarget.value)} onKeyPress={onEnterClick} value={value}/>
-
+      {initializedStatus === 'loading' && <Loader />}
       <Routes>
-      <Route path="/" element={<StartPage />} />
-      <Route path="/main" element={<MainPage />} />
-      <Route path="/empty" element={<EmptyStatePage />} />     
-    </Routes>
+        <Route path="/" element={start ? <StartPage /> : <MainPage />} />  
+      </Routes>
     </div>
   );
 }

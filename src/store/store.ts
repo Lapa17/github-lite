@@ -1,3 +1,4 @@
+import { appReducer } from './app-reducer';
 import { userReducer } from './user-reducer';
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import thunkMiddleware from 'redux-thunk'
@@ -5,7 +6,8 @@ import { useDispatch } from 'react-redux';
 
 
 const rootReducer = combineReducers({
-  user: userReducer
+  user: userReducer,
+  app: appReducer,
 })
 
 export const store = configureStore({

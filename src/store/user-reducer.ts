@@ -1,18 +1,36 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { AxiosError } from "axios"
 import { gitAPI, UserReposResponseType, UserResponseType } from "../api/gitAPI"
+import {setErrorAC, setInitializedStatusAC, setStartAC } from "./app-reducer"
 
 
 
-export const getUserTC = createAsyncThunk('user/getUser', async (userName: string, { dispatch }) => {
-    const res = await gitAPI.getUser(userName)
-    const user = res.data
-    dispatch(getReposTC(userName))
-    return user
+export const getUserTC = createAsyncThunk('user/getUser', async (userName: string, { dispatch,rejectWithValue }) => {
+    dispatch(setInitializedStatusAC({status: 'loading'}))
+    dispatch(setStartAC())
+    try{
+        const res = await gitAPI.getUser(userName)
+        const user = res.data
+        dispatch(setErrorAC(''))
+        dispatch(getReposTC(userName))
+        return user
+    }
+    catch (err:any){
+        dispatch(setErrorAC('User not found'))
+        dispatch(setInitializedStatusAC({status: 'failed'}))
+        return rejectWithValue({errors: [err.message], fieldsErrors: undefined})
+    }
 })
 
-export const getReposTC = createAsyncThunk('user/getRepos', async (userName: string, {}) => {
-    const res = await gitAPI.getUserRepos(userName)
-    return res.data
+export const getReposTC = createAsyncThunk('user/getRepos', async (userName: string, {dispatch,rejectWithValue}) => {
+    try{
+        const res = await gitAPI.getUserRepos(userName)
+        dispatch(setInitializedStatusAC({status: 'succeeded'}))
+        return res.data
+    }
+    catch (err:any){
+        return rejectWithValue({errors: [err.message], fieldsErrors: undefined})
+    }
 })
 
 const sliсe = createSlice({
