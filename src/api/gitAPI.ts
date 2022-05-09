@@ -9,8 +9,8 @@ export const gitAPI = {
     getUser(userName: string) {
         return instance.get<UserResponseType>(`/users/${userName}`);
     },
-    getUserRepos(userName: string) {
-        return instance.get<UserReposResponseType[]>(`/users/${userName}/repos`)
+    getUserRepos(userName: string, page:number) {
+        return instance.get<UserReposResponseType[]>(`/users/${userName}/repos?page=${page}&per_page=4`)
     }
 }
 

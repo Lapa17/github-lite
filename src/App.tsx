@@ -9,6 +9,7 @@ import { RootStateType, useAppDispatch } from './store/store';
 import { useSelector } from 'react-redux';
 import { RequestStatusType } from './store/app-reducer';
 import { Loader } from './components/Loader/Loader';
+import { Header } from './components/Header/Header';
 
 function App() {
   const [value, setValue] = useState('')
@@ -26,8 +27,7 @@ function App() {
 
   return (
     <div className="App">
-      logo
-      <input type="text"  onChange={(e)=> setValue(e.currentTarget.value)} onKeyPress={onEnterClick} value={value}/>
+      <Header setValue={setValue} onEnterClick={onEnterClick} value={value}/>
       {initializedStatus === 'loading' && <Loader />}
       <Routes>
         <Route path="/" element={start ? <StartPage /> : <MainPage />} />  

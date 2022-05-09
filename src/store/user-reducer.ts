@@ -12,7 +12,7 @@ export const getUserTC = createAsyncThunk('user/getUser', async (userName: strin
         const res = await gitAPI.getUser(userName)
         const user = res.data
         dispatch(setErrorAC(''))
-        dispatch(getReposTC(userName))
+        dispatch(getReposTC({userName, page:1}))
         return user
     }
     catch (err:any){
@@ -22,9 +22,10 @@ export const getUserTC = createAsyncThunk('user/getUser', async (userName: strin
     }
 })
 
-export const getReposTC = createAsyncThunk('user/getRepos', async (userName: string, {dispatch,rejectWithValue}) => {
+export const getReposTC = createAsyncThunk('user/getRepos', async (payload:{userName: string,page:number}, {dispatch,rejectWithValue}) => {
+    dispatch(setInitializedStatusAC({status: 'loading'}))
     try{
-        const res = await gitAPI.getUserRepos(userName)
+        const res = await gitAPI.getUserRepos(payload.userName, payload.page)
         dispatch(setInitializedStatusAC({status: 'succeeded'}))
         return res.data
     }
