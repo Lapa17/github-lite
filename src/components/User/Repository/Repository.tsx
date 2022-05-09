@@ -9,7 +9,6 @@ type PropsType = {
 
 const RepositoryWrapper = styled.div`
     border-radius: 6px;
-    gap:16px;
     padding:24px 32px;
     background-color: #ffffff;
     display: flex;
@@ -17,12 +16,24 @@ const RepositoryWrapper = styled.div`
     justify-content: center;
     align-items: flex-start;
     margin:24px 0px;
+    min-height:112px;
+    box-sizing: border-box;
+    gap:16px;
 `
+
+const RepositoryHeader = styled.h2`
+    margin:0px;
+    font-weight: 500;
+`
+const RepositoryParagraph = styled.p`
+    margin:0px;
+`
+
 
 export const Repository = React.memo(({repository}: PropsType) => {
     
     return <RepositoryWrapper>
-        <h5>{repository.name}</h5>
-        <p>{repository.description}</p>
+        <RepositoryHeader><a href={repository.html_url} target='_blank'>{repository.name} </a></RepositoryHeader>
+        <RepositoryParagraph>{repository.description}</RepositoryParagraph>
     </RepositoryWrapper>
 })

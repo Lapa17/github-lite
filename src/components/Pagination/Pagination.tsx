@@ -10,6 +10,8 @@ import { getReposTC } from '../../store/user-reducer';
 import { Loader } from '../Loader/Loader';
 import { Repository } from '../User/Repository/Repository';
 import s from './Pagination.module.css'
+import leftArrow from '../../assets/leftArrow.svg';
+import rightArrow from '../../assets/Rectangle.svg';
 
 type ItemPropsType = {
     currentItems: UserReposResponseType[]
@@ -39,7 +41,6 @@ const PaginationWrapper = styled.div`
 
 export const Pagination = React.memo(({ itemsPerPage, repos,reposCount,owner }: PaginationPropsType) => {
 
-    const initializedStatus = useSelector<RootStateType, RequestStatusType>(state => state.app.initializedStatus)
     const [currentItems, setCurrentItems] = useState<UserReposResponseType[]>(repos);
     const [pageCount, setPageCount] = useState<number>(0);
     const [itemOffset, setItemOffset] = useState(0);
@@ -64,15 +65,17 @@ export const Pagination = React.memo(({ itemsPerPage, repos,reposCount,owner }: 
             <Items currentItems={currentItems} />
             <ReactPaginate
                 breakLabel="..."
-                nextLabel=">"
+                nextLabel={<img src={rightArrow} />}
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={5}
                 pageCount={pageCount}
-                previousLabel="<"
+                previousLabel={<img src={leftArrow} />}
                 marginPagesDisplayed={5}
                 containerClassName={s.paginator}
                 pageClassName={s.page}
                 activeClassName={s.activePage}
+                activeLinkClassName={s.activeLink}
+                pageLinkClassName={s.pageLink}
             />
         </PaginationWrapper>
     )

@@ -1,7 +1,7 @@
 .paginator{
     display: flex;
     list-style: none;
-    gap: 10px;
+    gap: 16px;
     align-items: center;
     margin-top: 26px;
 }
@@ -11,4 +11,12 @@
     color: white;
     padding: 2px 6px;
     border-radius: 3px;
+}
+
+.pageLink{
+    color: #808080;
+}
+
+.activeLink{
+    color: white;
 }

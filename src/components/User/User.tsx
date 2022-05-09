@@ -22,9 +22,21 @@ const UserImage = styled.img`
     width: 280px;
     height: 280px;
     border-radius:50%;
+    margin-bottom:29px;
 `
 const RepoHeader = styled.h1`
     margin:0 0 29px 0;
+`
+const UserName = styled.h2`
+    margin:0;
+`
+const UserLogin = styled.div`
+    margin:12px 0 25px 0;
+    font-size:18px;
+`
+const FollowerWrapper = styled.div`
+    display: flex;
+    gap: 20px;
 `
 
 export const User = ({ user }: PropsType) => {
@@ -34,12 +46,12 @@ export const User = ({ user }: PropsType) => {
         <UserWrapper>
             <UserInfo>
                 <div> <UserImage src={user.avatar_url} /> </div>
-                <div>{user.name} </div>
-                <div><a href={user.html_url} target="_blank"> {user.login}</a></div>
-                <div>
-                    <span>Followers: {user.followers}</span>
-                    <span>Following: {user.following}</span>
-                </div>
+                <UserName>{user.name} </UserName>
+                <UserLogin><a href={user.html_url} target="_blank"> {user.login}</a></UserLogin>
+                <FollowerWrapper>
+                    <span>{user.followers} followers</span>
+                    <span>{user.following} following</span>
+                </FollowerWrapper>
             </UserInfo>
             <div>
                 {repos.length !== 0 ?
