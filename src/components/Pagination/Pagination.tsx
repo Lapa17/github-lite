@@ -12,6 +12,7 @@ import { Repository } from '../User/Repository/Repository';
 import s from './Pagination.module.css'
 import leftArrow from '../../assets/leftArrow.svg';
 import rightArrow from '../../assets/Rectangle.svg';
+import { device } from '../../utils/display-size'
 
 type ItemPropsType = {
     currentItems: UserReposResponseType[]
@@ -37,12 +38,17 @@ type PaginationPropsType = {
 
 const PaginationWrapper = styled.div`
    margin:0 56px 30px 0;
+   @media ${device.mobileL}{
+    margin:0;
+  }
 `
 const RightArrowImg = styled.img`
    margin-left: 26px;
+   cursor: pointer;
 `
 const LeftArrowImg = styled.img`
    margin-right: 26px;
+   cursor: pointer;
 `
 
 export const Pagination = React.memo(({ itemsPerPage, repos,reposCount,owner }: PaginationPropsType) => {
@@ -73,10 +79,10 @@ export const Pagination = React.memo(({ itemsPerPage, repos,reposCount,owner }: 
                 breakLabel="..."
                 nextLabel={<RightArrowImg src={rightArrow} />}
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
+                pageRangeDisplayed={3}
                 pageCount={pageCount}
                 previousLabel={<LeftArrowImg src={leftArrow} />}
-                marginPagesDisplayed={5}
+                marginPagesDisplayed={1}
                 containerClassName={s.paginator}
                 pageClassName={s.page}
                 activeClassName={s.activePage}

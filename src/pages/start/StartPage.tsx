@@ -1,5 +1,6 @@
 import startPage from '../../assets/startPage.svg';
 import styled from "styled-components";
+import { device } from '../../utils/display-size'
 
 
 const StartPageWrapper = styled.div`
@@ -9,6 +10,10 @@ const StartPageWrapper = styled.div`
   min-height: 90vh;
   align-items: end;
   align-content: center;
+  @media ${device.mobileL}{
+    min-height: 80vh
+  }
+  
 `
 
 const StartPageDescription = styled.div`
@@ -17,6 +22,11 @@ const StartPageDescription = styled.div`
   font-size: 22px;
   line-height: 31px;
   color: #808080;
+  @media ${device.mobileL}{
+    margin-top: 25px;
+    font-size: 20px;
+    line-height: 29px;
+  }
 `
 
 

@@ -4,6 +4,14 @@
     gap: 16px;
     align-items: center;
     margin-top: 26px;
+    padding-inline-start: 0;
+}
+
+@media (max-width: 426px) {
+    .paginator{
+        justify-content: center;
+    }
+    
 }
 
 .activePage{
@@ -15,6 +23,7 @@
 
 .pageLink{
     color: #808080;
+    cursor: pointer;
 }
 
 .activeLink{
