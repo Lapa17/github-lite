@@ -14,6 +14,7 @@ type PropsType = {
 const UserWrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 3fr;
+    margin-top: 39px;
 `
 const UserInfo = styled.div`
     margin: 0 96px 0 57px;

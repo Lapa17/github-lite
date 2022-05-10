@@ -38,6 +38,12 @@ type PaginationPropsType = {
 const PaginationWrapper = styled.div`
    margin:0 56px 30px 0;
 `
+const RightArrowImg = styled.img`
+   margin-left: 26px;
+`
+const LeftArrowImg = styled.img`
+   margin-right: 26px;
+`
 
 export const Pagination = React.memo(({ itemsPerPage, repos,reposCount,owner }: PaginationPropsType) => {
 
@@ -65,11 +71,11 @@ export const Pagination = React.memo(({ itemsPerPage, repos,reposCount,owner }: 
             <Items currentItems={currentItems} />
             <ReactPaginate
                 breakLabel="..."
-                nextLabel={<img src={rightArrow} />}
+                nextLabel={<RightArrowImg src={rightArrow} />}
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={5}
                 pageCount={pageCount}
-                previousLabel={<img src={leftArrow} />}
+                previousLabel={<LeftArrowImg src={leftArrow} />}
                 marginPagesDisplayed={5}
                 containerClassName={s.paginator}
                 pageClassName={s.page}
