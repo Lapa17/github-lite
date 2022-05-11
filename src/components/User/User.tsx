@@ -16,7 +16,7 @@ const UserWrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 3fr;
     margin-top: 39px;
-    @media ${device.mobileL}{
+    @media ${device.mobileXL}{
         grid-template-columns:none;
         margin-top: 20px;
         padding:10px;
@@ -28,7 +28,7 @@ const UserInfo = styled.div`
     @media ${device.tablet}{
         margin: 0 35px 0 30px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobileXL}{
         display: grid;
         margin: 0;
         grid-template-areas:
@@ -47,39 +47,39 @@ const UserImage = styled.img`
         width: 200px;
         height: 200px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobileXL}{
         width: 80px;
         height: 80px;
     }
 `
 const UserImageWrapper = styled.div`
-    @media ${device.mobileL}{
+    @media ${device.mobileXL}{
         grid-area: ui;
     }
 `
 const RepoHeader = styled.h1`
     margin:0 0 29px 0;
-    @media ${device.mobileL}{
+    @media ${device.mobileXL}{
         margin:15px 0 10px 0;
     }
 `
 const UserName = styled.h2`
     margin:0;
-    @media ${device.mobileL}{
+    @media ${device.mobileXL}{
         grid-area: un;
     }
 `
 const UserLogin = styled.div`
     margin:12px 0 25px 0;
     font-size:18px;
-    @media ${device.mobileL}{
+    @media ${device.mobileXL}{
         grid-area: ul;
     }
 `
 const FollowerWrapper = styled.div`
     display: flex;
     gap: 20px;
-    @media ${device.mobileL}{
+    @media ${device.mobileXL}{
         grid-area: fw;
     }
 `

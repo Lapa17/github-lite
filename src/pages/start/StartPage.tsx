@@ -10,8 +10,8 @@ const StartPageWrapper = styled.div`
   min-height: 90vh;
   align-items: end;
   align-content: center;
-  @media ${device.mobileL}{
-    min-height: 80vh
+  @media ${device.mobileXL}{
+    min-height: 80vh;
   }
   
 `
@@ -22,11 +22,14 @@ const StartPageDescription = styled.div`
   font-size: 22px;
   line-height: 31px;
   color: #808080;
-  @media ${device.mobileL}{
+  @media ${device.mobileXL}{
     margin-top: 25px;
     font-size: 20px;
     line-height: 29px;
   }
+`
+const StartPageImg = styled.img`
+  width: 66px;
 `
 
 
@@ -34,7 +37,7 @@ export const StartPage = () => {
 
     return (
         <StartPageWrapper>
-            <div><img src={startPage} alt=""/></div>
+            <div><StartPageImg src={startPage} alt=""/></div>
             <StartPageDescription>Start with searching <br />
                 a GitHub user
             </StartPageDescription>

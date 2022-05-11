@@ -1,4 +1,4 @@
-import emptyRepo from '../../../assets/web-window-close.svg';
+import emptyRepo from '../../../assets/no-repos.svg';
 import styled from "styled-components";
 
 const EmptyRepoWrapper = styled.div`
@@ -13,6 +13,7 @@ const EmptyRepoImgWrapper = styled.div`
 `
 const EmptyRepoImg = styled.img`
     width: 100%;
+    height: 62px;
 `
 const EmptyRepoDescription = styled.div`
     font-size: 22px;

@@ -38,7 +38,7 @@ type PaginationPropsType = {
 
 const PaginationWrapper = styled.div`
    margin:0 56px 30px 0;
-   @media ${device.mobileL}{
+   @media ${device.mobileXL}{
     margin:0;
   }
 `

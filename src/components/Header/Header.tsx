@@ -14,10 +14,7 @@ const HeaderWrapper = styled.header`
     background: #0064EB;
     padding: 16px 0 16px 41px;
     display: flex;
-    @media ${device.laptop}{
-        width:100%;
-    }
-    @media ${device.mobileL}{
+    @media ${device.mobileXL}{
         padding: 10px 0 10px 16px;
         width:auto;
     }
@@ -31,7 +28,7 @@ const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 8px 19px;
-  @media ${device.mobileL}{
+  @media ${device.mobileXL}{
       width: 100%;
       margin: 0 15px;
 
