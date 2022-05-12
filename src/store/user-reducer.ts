@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { AxiosError } from "axios"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { gitAPI, UserReposResponseType, UserResponseType } from "../api/gitAPI"
 import {setErrorAC, setInitializedStatusAC, setStartAC } from "./app-reducer"
+import {AxiosError} from "axios";
 
 
 
@@ -27,11 +27,12 @@ export const getReposTC = createAsyncThunk('user/getRepos', async (payload:{user
     try{
         const res = await gitAPI.getUserRepos(payload.userName, payload.page)
         dispatch(setInitializedStatusAC({status: 'succeeded'}))
-        return res.data
+        return {repos:res.data, page: payload.page}
     }
     catch (err:any){
+        const error: AxiosError = err
         dispatch(setInitializedStatusAC({status: 'failed'}))
-        return []
+        return rejectWithValue({errors: [error.message], fieldsErrors: undefined})
     }
 })
 
@@ -60,7 +61,8 @@ const sliсe = createSlice({
                 id: 0,
                 name: ''
             }
-        ]
+        ],
+        currentPage: 1,
     } as UserStateType,
     reducers: {
     },
@@ -69,7 +71,8 @@ const sliсe = createSlice({
             state.user = action.payload
         })
         builder.addCase(getReposTC.fulfilled, (state, action) => {
-            state.repos = action.payload
+            state.repos = action.payload.repos
+            state.currentPage = action.payload.page
         })
     }
 })
@@ -80,4 +83,5 @@ export const userReducer = sliсe.reducer
 export type UserStateType = {
     user: UserResponseType
     repos: UserReposResponseType[]
+    currentPage: number
 }

@@ -32,10 +32,10 @@ const UserInfo = styled.div`
         display: grid;
         margin: 0;
         grid-template-areas:
-            "ui un un un"
-            "ui ul ul ul"
-            "fw fw fw fw";
-        justify-content: space-around;
+            "ui un"
+            "ui ul"
+            "fw fw";
+        justify-content: flex-start;
     }
 `
 const UserImage = styled.img`
@@ -87,6 +87,8 @@ const FollowerWrapper = styled.div`
 export const User = ({ user }: PropsType) => {
     const repos = useSelector<RootStateType, UserReposResponseType[]>(state => state.user.repos)
 
+    const userFollowers = user.followers >= 1000 ? Math.round(user.followers/100)/10+'k' : user.followers
+
     return (
         <UserWrapper>
             <UserInfo>
@@ -94,7 +96,7 @@ export const User = ({ user }: PropsType) => {
                 <UserName>{user.name} </UserName>
                 <UserLogin><a href={user.html_url} target="_blank"> {user.login}</a></UserLogin>
                 <FollowerWrapper>
-                    <span>{user.followers} followers</span>
+                    <span>{userFollowers} followers</span>
                     <span>{user.following} following</span>
                 </FollowerWrapper>
             </UserInfo>

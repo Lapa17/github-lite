@@ -1,7 +1,5 @@
 import React, { useState, KeyboardEvent } from 'react';
-import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { EmptyStatePage } from './pages/empty/EmptyStatePage';
 import { MainPage } from './pages/main/MainPage';
 import { StartPage } from './pages/start/StartPage';
 import { getUserTC } from './store/user-reducer';
