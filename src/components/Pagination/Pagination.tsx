@@ -35,11 +35,14 @@ const Counter = styled.div`
   color: #808080;
   align-items: center;
   @media ${device.laptop} {
-    margin-left: -100px;
+    margin-left: -200px;
   }
   @media ${device.mobileXL} {
     font-size: 16px;
     margin-left: 0px;
+  }
+  @media ${device.mobileS} {
+    display: none;
   }
   
 `
@@ -51,15 +54,22 @@ const PaginateWrapper = styled.div`
   @media ${device.mobileXL} {
     justify-content: center;
     padding-right: 0px;
+    gap: 10px;
   }
 `
 const RightArrowImg = styled.img`
   margin-left: 16px;
   cursor: pointer;
+  @media ${device.mobileXL} {
+    margin-left: 0px;
+  }
 `
 const LeftArrowImg = styled.img`
   margin-right: 16px;
   cursor: pointer;
+  @media ${device.mobileXL} {
+    margin-right: 0px;
+  }
 `
 
 export const Pagination = React.memo(({itemsPerPage, repos, reposCount, owner}: PaginationPropsType) => {

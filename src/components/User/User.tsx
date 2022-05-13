@@ -4,8 +4,9 @@ import { UserReposResponseType, UserResponseType } from "../../api/gitAPI"
 import { RootStateType } from "../../store/store"
 import { Pagination } from "../Pagination/Pagination"
 import { EmptyRepository } from "./Repository/EmptyRepository"
-import { Repository } from "./Repository/Repository"
 import { device } from '../../utils/display-size'
+import followers from '../../assets/followers.svg';
+import following from '../../assets/following.svg';
 
 
 type PropsType = {
@@ -24,7 +25,7 @@ const UserWrapper = styled.div`
     
 `
 const UserInfo = styled.div`
-    margin: 0 96px 0 57px;
+    margin: 0 85px 0 57px;
     @media ${device.tablet}{
         margin: 0 35px 0 30px;
     }
@@ -43,6 +44,7 @@ const UserImage = styled.img`
     height: 280px;
     border-radius:50%;
     margin-bottom:29px;
+    margin-right: 11px;
     @media ${device.tablet}{
         width: 200px;
         height: 200px;
@@ -78,10 +80,19 @@ const UserLogin = styled.div`
 `
 const FollowerWrapper = styled.div`
     display: flex;
-    gap: 20px;
+    align-items: center;
     @media ${device.mobileXL}{
         grid-area: fw;
     }
+`
+const Followers = styled.img`
+    width: 22px;
+    margin-right: 9px;
+`
+const Following = styled.img`
+    width: 16px;
+    margin-right:12px;
+    margin-left: 20px
 `
 
 export const User = ({ user }: PropsType) => {
@@ -96,8 +107,8 @@ export const User = ({ user }: PropsType) => {
                 <UserName>{user.name} </UserName>
                 <UserLogin><a href={user.html_url} target="_blank"> {user.login}</a></UserLogin>
                 <FollowerWrapper>
-                    <span>{userFollowers} followers</span>
-                    <span>{user.following} following</span>
+                    <Followers src={followers}/><span>{userFollowers} followers</span>
+                    <Following src={following}/><span>{user.following} following</span>
                 </FollowerWrapper>
             </UserInfo>
             <div>
