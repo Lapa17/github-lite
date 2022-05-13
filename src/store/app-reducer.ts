@@ -2,12 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 
 
-const sliсe = createSlice({
+const slice = createSlice({
     name: 'app',
     initialState: {
         start: true,
         initializedStatus: 'idle',
-        error: ''
     } as InitialStateType,
     reducers: {
         setStartAC(state) {
@@ -16,25 +15,20 @@ const sliсe = createSlice({
         setInitializedStatusAC(state, action: PayloadAction<{ status: RequestStatusType }>) {
             state.initializedStatus = action.payload.status
         },
-        setErrorAC(state, action: PayloadAction<string>) {
-            state.error = action.payload
-        },
     },
     extraReducers(builder) {
     }
 })
 
-export const appReducer = sliсe.reducer
+export const appReducer = slice.reducer
 
 export const {
     setStartAC,
     setInitializedStatusAC,
-    setErrorAC
-} = sliсe.actions
+    } = slice.actions
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type InitialStateType = {
     initializedStatus: RequestStatusType
     start: boolean
-    error: string
 }

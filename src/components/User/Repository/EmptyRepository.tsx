@@ -12,14 +12,14 @@ const EmptyRepoImgWrapper = styled.div`
   height: 62px;
 `
 const EmptyRepoImg = styled.img`
-    width: 100%;
-    height: 62px;
+  width: 100%;
+  height: 62px;
 `
 const EmptyRepoDescription = styled.div`
-    font-size: 22px;
-    line-height: 31px;
-    color: #808080;
-    margin-top: 48px;
+  font-size: 22px;
+  line-height: 31px;
+  color: #808080;
+  margin-top: 48px;
 `
 
 export const EmptyRepository = () => {
@@ -30,6 +30,6 @@ export const EmptyRepository = () => {
                 Repository list is empty
             </EmptyRepoDescription>
         </EmptyRepoWrapper>
-        )
+    )
 
 }

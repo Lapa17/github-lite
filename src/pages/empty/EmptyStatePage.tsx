@@ -14,7 +14,6 @@ const EmptyPageWrapper = styled.div`
   }
   
 `
-
 const EmptyPageDescription = styled.div`
   margin-top: 42px;
   text-align: center;

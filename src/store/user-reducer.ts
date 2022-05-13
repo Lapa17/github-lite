@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { gitAPI, UserReposResponseType, UserResponseType } from "../api/gitAPI"
-import {setErrorAC, setInitializedStatusAC, setStartAC } from "./app-reducer"
+import {setInitializedStatusAC, setStartAC } from "./app-reducer"
 import {AxiosError} from "axios";
 
 
@@ -11,12 +11,10 @@ export const getUserTC = createAsyncThunk('user/getUser', async (userName: strin
     try{
         const res = await gitAPI.getUser(userName)
         const user = res.data
-        dispatch(setErrorAC(''))
         dispatch(getReposTC({userName, page:1}))
         return user
     }
     catch (err:any){
-        dispatch(setErrorAC('User not found'))
         dispatch(setInitializedStatusAC({status: 'failed'}))
         return rejectWithValue({errors: [err.message], fieldsErrors: undefined})
     }
@@ -36,7 +34,7 @@ export const getReposTC = createAsyncThunk('user/getRepos', async (payload:{user
     }
 })
 
-const sliсe = createSlice({
+const slice = createSlice({
     name: 'user',
     initialState: {
         user: {
@@ -77,7 +75,7 @@ const sliсe = createSlice({
     }
 })
 
-export const userReducer = sliсe.reducer
+export const userReducer = slice.reducer
 
 
 export type UserStateType = {

@@ -1,9 +1,8 @@
-import React from 'react';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactPaginate from 'react-paginate';
 import styled from 'styled-components';
 import {UserReposResponseType} from '../../api/gitAPI';
-import {RootStateType, useAppDispatch} from '../../store/store';
+import {useAppDispatch} from '../../store/store';
 import {getReposTC} from '../../store/user-reducer';
 import s from './Pagination.module.css'
 import leftArrow from '../../assets/leftArrow.svg';
@@ -11,6 +10,7 @@ import rightArrow from '../../assets/Rectangle.svg';
 import {device} from '../../utils/display-size'
 import {Items} from "./Items";
 import {useSelector} from "react-redux";
+import {selectCurrentPage} from "../../selectors/selectors";
 
 
 type PaginationPropsType = {
@@ -20,14 +20,12 @@ type PaginationPropsType = {
     owner: string
 }
 
-
 const PaginationWrapper = styled.div`
   margin: 0 56px 28px 0;
   @media ${device.mobileXL} {
     margin: 0;
   }
 `
-
 const Counter = styled.div`
   display: flex;
   font-size: 14px;
@@ -44,7 +42,7 @@ const Counter = styled.div`
   @media ${device.mobileS} {
     display: none;
   }
-  
+
 `
 const PaginateWrapper = styled.div`
   display: flex;
@@ -74,7 +72,7 @@ const LeftArrowImg = styled.img`
 
 export const Pagination = React.memo(({itemsPerPage, repos, reposCount, owner}: PaginationPropsType) => {
 
-    const currentPage = useSelector<RootStateType, number>(state => state.user.currentPage)
+    const currentPage = useSelector(selectCurrentPage)
 
     const [currentItems, setCurrentItems] = useState<UserReposResponseType[]>(repos);
     const [pageCount, setPageCount] = useState<number>(0);
@@ -88,10 +86,10 @@ export const Pagination = React.memo(({itemsPerPage, repos, reposCount, owner}: 
         console.log(`Loading items from ${itemOffset} to ${endOffset}`);
         setCurrentItems(repos.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(reposCount / itemsPerPage));
-        if(currentPage === 1){
-            setRepoArr([1,4])
+        if (currentPage === 1) {
+            setRepoArr([1, 4])
         }
-    }, [itemOffset, repos,currentPage]);
+    }, [itemOffset, repos, currentPage]);
 
     const handlePageClick = (event: { selected: number; }) => {
         dispatch(getReposTC({userName: owner, page: event.selected + 1}))
@@ -105,7 +103,7 @@ export const Pagination = React.memo(({itemsPerPage, repos, reposCount, owner}: 
             <PaginateWrapper>
                 <Counter>{repoArr[0]}-{repoArr[1]} of {reposCount} items</Counter>
                 <ReactPaginate
-                    forcePage={currentPage-1}
+                    forcePage={currentPage - 1}
                     breakLabel="..."
                     nextLabel={<RightArrowImg src={rightArrow}/>}
                     onPageChange={handlePageClick}
